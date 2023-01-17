@@ -2,21 +2,22 @@ package main
 
 import "fmt"
 
-func adder() func(int) int {
+// fibonacci is a function that returns
+// a function that returns an int.
+func fibonacci() func() int {
 	sum := 0
-	return func(x int) int {
-		sum += x
+	sum2 := 1
+	return func() int {
+		sum3 := sum
+		sum = sum + sum2
+		sum2 = sum3
 		return sum
 	}
 }
 
 func main() {
-	pos, neg := adder(), adder()
-	fmt.Println(pos, neg)
+	f := fibonacci()
 	for i := 0; i < 10; i++ {
-		fmt.Println(
-			pos(i),
-			neg(-2*i),
-		)
+		fmt.Println(f())
 	}
 }
