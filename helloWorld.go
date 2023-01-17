@@ -1,25 +1,11 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
+
+var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
 
 func main() {
-	board := [][]string{
-		[]string{"_", "_", "_"},
-		[]string{"_", "_", "_"},
-		[]string{"_", "_", "_"},
+	for index, value := range pow {
+		fmt.Printf("2**%d = %d\n", index, value)
 	}
-
-	board[0][0] = "X"
-	board[2][2] = "O"
-	board[1][2] = "X"
-	board[1][0] = "O"
-	board[0][2] = "X"
-
-	for i := 0; i < len(board); i++ {
-		fmt.Printf("%S\n", strings.Join(board[i], " "))
-	}
-
 }
