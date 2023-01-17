@@ -1,23 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-// fibonacci is a function that returns
-// a function that returns an int.
-func fibonacci() func() int {
-	sum := 0
-	sum2 := 1
-	return func() int {
-		sum3 := sum
-		sum = sum + sum2
-		sum2 = sum3
-		return sum
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
 	}
+	return float64(f)
 }
 
 func main() {
-	f := fibonacci()
-	for i := 0; i < 10; i++ {
-		fmt.Println(f())
-	}
+	v := MyFloat(-math.Sqrt2)
+	fmt.Println(math.Sqrt2)
+	fmt.Println(v.Abs())
 }
