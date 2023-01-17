@@ -2,10 +2,16 @@ package main
 
 import "fmt"
 
-var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+type Vertex struct {
+	Lat, Long float64
+}
+
+var m map[string]Vertex
 
 func main() {
-	for index, value := range pow {
-		fmt.Printf("2**%d = %d\n", index, value)
+	m = make(map[string]Vertex)
+	m["Bell Labs"] = Vertex{
+		40.68433, -74.39967,
 	}
+	fmt.Println(m["Bell Labs"])
 }
