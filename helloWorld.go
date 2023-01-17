@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"runtime"
+	"time"
 )
 
 func main() {
-	fmt.Print("Go Runs on ")
 
-	switch os := runtime.GOOS; os {
-	case "darwin":
-		fmt.Println("OS X.")
-	case "linux":
-		fmt.Println("Linux.")
+	today := time.Now()
+	switch {
+	case today.Hour() < 12:
+		fmt.Println("Good Morning!")
+	case today.Hour() < 17:
+		fmt.Println("Good afternoon")
 	default:
-		fmt.Printf("%s. \n", os)
+		fmt.Println("Good evening")
 	}
 }
