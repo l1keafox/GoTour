@@ -2,24 +2,30 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 )
 
-func main() {
-	var i interface{} = "hello"
+type IPAddr [4]byte
 
-	s := i.(string)
-	fmt.Println(s)
+// TODO: Add a "String() string" method to IPAddr.
 
-	s, ok := i.(string)
-	fmt.Println(s, ok)
+func (ip IPAddr) String() string {
+	s := make([]string, len(ip)) // So this makes a string array with length of ip
 
-	f, ok := i.(float64)
-	fmt.Println(f, ok)
-
-	f = i.(float64)
-	fmt.Println(f)
+	for i, val := range ip { // this loops through it.
+		s[i] = strconv.Itoa(int(val))
+	}
+	return strings.Join(s, ".")
 }
 
-func describe(i interface{}) {
-	fmt.Printf("(%v, %T)\n", i, i)
+func main() {
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+
+	}
 }
