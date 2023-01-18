@@ -1,26 +1,22 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-type Vertex struct {
-	X, Y float64
+type I interface {
+	M()
 }
 
-func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+type T struct {
+	S string
 }
 
-func (v *Vertex) Scale(f float64) {
-	v.X = v.X * f
-	v.Y = v.Y * f
+// so this method means type T implmenets interface I,
+// But we don't need to explicitiy delcare that it does so
+func (t T) M() {
+	fmt.Println(t.S)
 }
 
 func main() {
-	v := &Vertex{3, 4}
-	fmt.Printf("Before scaling: %+v, Abs %v\n", v, v.Abs())
-	v.Scale(5)
-	fmt.Printf("after Scaling : %+v, Abs: %v\n", v, v.Abs())
+	var i I = T{"Hello"}
+	i.M()
 }
