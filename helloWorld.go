@@ -1,22 +1,21 @@
 package main
 
-import "fmt"
-
-type I interface {
-	M()
-}
-
-type T struct {
-	S string
-}
-
-// so this method means type T implmenets interface I,
-// But we don't need to explicitiy delcare that it does so
-func (t T) M() {
-	fmt.Println(t.S)
-}
+import (
+	"fmt"
+)
 
 func main() {
-	var i I = T{"Hello"}
-	i.M()
+	var i interface{}
+	describe(i)
+
+	i = 42
+	describe(i)
+
+	i = "Hello"
+	describe(i)
+
+}
+
+func describe(i interface{}) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }
