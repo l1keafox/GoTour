@@ -19,7 +19,8 @@ func (v *Vertex) Scale(f float64) {
 }
 
 func main() {
-	v := Vertex{3, 4}
-	v.Scale(10)
-	fmt.Println(v.Abs())
+	v := &Vertex{3, 4}
+	fmt.Printf("Before scaling: %+v, Abs %v\n", v, v.Abs())
+	v.Scale(5)
+	fmt.Printf("after Scaling : %+v, Abs: %v\n", v, v.Abs())
 }
