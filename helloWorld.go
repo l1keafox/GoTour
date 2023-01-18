@@ -5,15 +5,19 @@ import (
 )
 
 func main() {
-	var i interface{}
-	describe(i)
+	var i interface{} = "hello"
 
-	i = 42
-	describe(i)
+	s := i.(string)
+	fmt.Println(s)
 
-	i = "Hello"
-	describe(i)
+	s, ok := i.(string)
+	fmt.Println(s, ok)
 
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
+
+	f = i.(float64)
+	fmt.Println(f)
 }
 
 func describe(i interface{}) {
