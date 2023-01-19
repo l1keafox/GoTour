@@ -2,24 +2,22 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"time"
 )
 
-type ErrNegativeSqrt float64
-
-func (e ErrNegativeSqrt) Error() string {
-	return fmt.Sprintf("cannot Sqrt negative number: %v", float64(e))
-}
-
-func Sqrt(x float64) (float64, error) {
-	if x < 0 {
-		return x, ErrNegativeSqrt(x)
-	}
-	return math.Sqrt(x), nil
-
-}
-
 func main() {
-	fmt.Println(Sqrt(2))
-	fmt.Println(Sqrt(-2))
+	tick := time.Tick(100 * time.Millisecond)
+	boom := time.After(500 * time.Millisecond)
+	for {
+		select {
+		case <-tick:
+			fmt.Println("tick.")
+		case <-boom:
+			fmt.Println("BOOM!")
+			return
+		default:
+			fmt.Println("    .")
+			time.Sleep(50 * time.Millisecond)
+		}
+	}
 }
